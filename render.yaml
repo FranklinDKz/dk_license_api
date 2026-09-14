@@ -7,3 +7,73 @@ services:
     startCommand: npm start
     healthCheckPath: /health
     autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: TRUST_PROXY
+        value: "true"
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAME_SITE
+        value: None
+
+      # Origem do painel administrativo liberada por CORS
+      - key: PANEL_ORIGIN
+        sync: false
+
+      # Banco (Aiven MySQL)
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_CONNECTION_LIMIT
+        value: "5"
+      - key: DB_SSL
+        value: "true"
+      - key: DB_SSL_REJECT_UNAUTHORIZED
+        value: "true"
+      - key: DB_SSL_CA_BASE64
+        sync: false
+
+      # Segredos — o Render gera valores aleatórios fortes no primeiro deploy
+      - key: JWT_SECRET
+        generateValue: true
+      - key: BOT_SERVICE_TOKEN
+        generateValue: true
+      - key: LICENSE_PEPPER
+        generateValue: true
+
+      # Conta root, criada automaticamente no primeiro boot
+      - key: ROOT_EMAIL
+        sync: false
+      - key: ROOT_PASSWORD
+        sync: false
+      - key: ROOT_NAME
+        value: DK RP
+      - key: ROOT_ORG_NAME
+        sync: false
+
+      - key: ADMIN_SESSION_HOURS
+        value: "24"
+      - key: REQUEST_LIMIT_PER_IP
+        value: "2"
+      - key: DEFAULT_IP_CHANGE_LIMIT
+        value: "2"
+      - key: DEFAULT_DISCORD_PRODUCT_ROLE_ID
+        sync: false
+      - key: SESSION_TTL_SECONDS
+        value: "180"
+      - key: HEARTBEAT_GRACE_SECONDS
+        value: "180"
+      - key: LOGIN_RATE_LIMIT_PER_15M
+        value: "10"
+      - key: FIVEM_RATE_LIMIT_PER_MIN
+        value: "120"

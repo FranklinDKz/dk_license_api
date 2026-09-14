@@ -60,9 +60,22 @@ Desenvolvimento com reinício automático:
 npm run dev
 ```
 
-## Deploy
+## Deploy no Render
 
-Já vem com `render.yaml` pronto para o [Render](https://render.com/): build com `npm ci`, start com `npm start`, healthcheck em `/health` e deploy automático a cada push.
+O `render.yaml` já está pronto como [Blueprint](https://render.com/docs/blueprint-spec): build com `npm ci`, start com `npm start`, healthcheck em `/health`, deploy automático a cada push, e a lista completa de variáveis de ambiente já declarada (algumas com valor fixo, outras que o Render pede para você preencher, e os três segredos gerados automaticamente).
+
+1. No Render, **New > Blueprint** e aponte para este repositório.
+2. O Render vai pedir os campos marcados como pendentes: `PANEL_ORIGIN`, `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SSL_CA_BASE64`, `ROOT_EMAIL`, `ROOT_PASSWORD`, `ROOT_ORG_NAME` e `DEFAULT_DISCORD_PRODUCT_ROLE_ID`.
+3. `DB_SSL_CA_BASE64` é o `ca.pem` da instância Aiven em base64 numa linha só:
+   ```bash
+   base64 -w0 ca.pem
+   ```
+   (no PowerShell: `[Convert]::ToBase64String([IO.File]::ReadAllBytes("ca.pem"))`)
+4. `JWT_SECRET`, `BOT_SERVICE_TOKEN` e `LICENSE_PEPPER` são gerados automaticamente pelo Render — não precisa preencher.
+5. **Não é necessário configurar `API_PUBLIC_URL`**: o código já usa `RENDER_EXTERNAL_URL`, que o Render injeta sozinho em todo serviço.
+6. O banco (schema, tabelas) precisa já existir antes do primeiro boot — esta API só aplica ajustes incrementais (`ALTER TABLE`), não cria o schema do zero.
+
+Depois do primeiro deploy, qualquer push na branch principal atualiza o serviço automaticamente.
 
 ## Segurança
 
