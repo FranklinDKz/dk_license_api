@@ -1,0 +1,18 @@
+{
+  "name": "@dk-license/api",
+  "version": "1.6.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "fastify": "^5.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.23.2"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
