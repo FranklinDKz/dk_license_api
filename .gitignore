@@ -1,7 +1,7 @@
 node_modules/
-.env
-.env.*
-!.env.example
 npm-debug.log*
 .DS_Store
 
+# Este é um repositório PRIVADO e, por solicitação do projeto,
+# o .env é mantido/versionado com as credenciais reais.
+# Não torne este repositório público sem remover/rotacionar os segredos.

@@ -38,7 +38,7 @@ src/
 
 ## Variáveis de ambiente
 
-Veja `.env.example` para a lista completa. Os grupos principais:
+Veja o `.env` (já versionado neste repositório privado) para a lista completa. Os grupos principais:
 
 - `DB_*` — conexão MySQL (testado com Aiven, TLS via `DB_SSL_CA_BASE64`).
 - `JWT_SECRET` / `LICENSE_PEPPER` / `BOT_SERVICE_TOKEN` — segredos de assinatura e proteção das chaves de licença. **Gere valores fortes e não troque `LICENSE_PEPPER` depois de emitir licenças** — isso invalida todas as chaves existentes.
@@ -50,7 +50,6 @@ Veja `.env.example` para a lista completa. Os grupos principais:
 
 ```bash
 npm install
-cp .env.example .env   # preencha com seus valores
 npm start
 ```
 
